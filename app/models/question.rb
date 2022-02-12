@@ -1,4 +1,7 @@
 class Question < ApplicationRecord
+  validates :text, presence: true
+  validates :poll_id, presence: true
+
   belongs_to :poll,
     class_name: 'Poll',
     foreign_key: :poll_id,
@@ -8,4 +11,7 @@ class Question < ApplicationRecord
     class_name: 'AnswerChoice',
     foreign_key: :question_id,
     primary_key: :id
+
+  has_many :responses,
+    through: :answer_choices
 end
